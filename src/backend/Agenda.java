@@ -104,12 +104,5 @@ public class Agenda {
 	public void setTs(TipoServico ts) {
 		this.ts = ts;
 	}
-	
-	
-	
-	public static void main (String[] args) {
-	    System.out.println("Rodando...");
-	    System.out.println("Fim da execucao!");
-	  }
 
 }
