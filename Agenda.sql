@@ -14,7 +14,7 @@ create table pessoa(
     nome varchar(100) not null,
     rg varchar(20) not null,
     email varchar(100),
-    constraint pk_cli primary key (cpf)
+    constraint pk_pesso primary key (cpf)
 );
 
 create table telefone(
@@ -53,9 +53,10 @@ create table cargo(
     constraint pk_cargo primary key (codigo)
 );
 
-create table funcinario(
+create table funcionario(
     matricula int auto_increment  not null,
     cpf_pessoa integer not null,
+    senha varchar(36) not null,
     cargo int not null,
     nivel int default 1,
         constraint pk_fun primary key (matricula),
@@ -79,7 +80,7 @@ create table tiposervico(
 
 create table servico(
     cpf_pessoa integer not null,
-    codigo_funcinario int not null,
+    codigo_funcionario int not null,
     desconto float default 0.00,
     data_aten date not null,
     hora_aten time not null,
@@ -89,7 +90,7 @@ create table servico(
         references cliente (cpf_pessoa)
         on delete restrict on update cascade,
         
-        constraint pf_codigo_fun foreign key (codigo_funcinario)
-        references funcinario (matricula)
+        constraint pf_codigo_fun foreign key (codigo_funcionario)
+        references funcionario (matricula)
         on delete restrict on update cascade
 );

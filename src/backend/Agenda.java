@@ -108,7 +108,11 @@ public class Agenda {
 	
 	
 	public static void main (String[] args) {
+		ConexaoBD c1=new ConexaoBD();
+		c1.conectarBD();
+		//c1.insere("Breno", 123456789,"MG", "xxxx@kkk.com");
 	    System.out.println("Rodando...");
+	    c1.fecharConexao();
 	    System.out.println("Fim da execucao!");
 	  }
 
