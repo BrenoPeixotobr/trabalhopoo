@@ -13,6 +13,10 @@ public class Agenda {
 	private Endereco e;
 	private Servico s;
 	private TipoServico ts;
+
+	public void comentario(){
+		System.out.println("Nada!");
+	}
 	
 	public Pessoa getP() {
 		return p;
