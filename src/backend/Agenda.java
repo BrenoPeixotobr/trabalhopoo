@@ -1,11 +1,6 @@
 package backend;
 
 public class Agenda {
-	
-
-	// Um comentário
-
-
 	private Pessoa p;
 	private Funcinario f;
 	private Telefone tele;
