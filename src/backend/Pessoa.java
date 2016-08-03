@@ -3,20 +3,17 @@ package backend;
 import java.util.ArrayList;
 
 public class Pessoa {
-	
-	//comentario
-	
-	protected int cpf;
+	protected String cpf;
 	protected String nome;
 	protected String rg;
 	protected String email;
 	protected Endereco ende;
 	
 	protected  ArrayList<Telefone> tel;
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 	public String getNome() {
