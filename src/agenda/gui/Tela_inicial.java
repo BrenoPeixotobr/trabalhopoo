@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.JMenuItem;
 
 public class Tela_inicial extends JFrame {
 
@@ -44,21 +45,38 @@ public class Tela_inicial extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btncadastrar = new JButton("Cliente");
-		btncadastrar.setFont(new Font("Dialog", Font.BOLD, 10));
-		btncadastrar.addActionListener(new ActionListener() {
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(12, 0, 129, 21);
+		contentPane.add(menuBar);
+		
+		JMenu mnCadastro = new JMenu("Cadastro");
+		menuBar.add(mnCadastro);
+		
+		JMenuItem mntmFuncionario = new JMenuItem("Funcionário");
+		mntmFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				Tela_cadastra tela1= new Tela_cadastra();
+				Tela_cadastra_fun tela2 = new Tela_cadastra_fun();
+				tela2.setVisible(true);
+			}
+		});
+		mnCadastro.add(mntmFuncionario);
+		
+		JMenuItem mntmCliente = new JMenuItem("Cliente");
+		mntmCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Tela_cadastra tela1 = new Tela_cadastra();
 				tela1.setVisible(true);
 			}
 		});
-		btncadastrar.setBounds(12, 0, 91, 61);
-		contentPane.add(btncadastrar);
+		mnCadastro.add(mntmCliente);
 		
-		JButton butFuncinario = new JButton("Funcionário");
-		butFuncinario.setFont(new Font("Dialog", Font.BOLD, 9));
-		butFuncinario.setBounds(108, 0, 91, 61);
-		contentPane.add(butFuncinario);
+		JMenu mnAlterar = new JMenu("Alterar");
+		menuBar.add(mnAlterar);
+		
+		JMenu mnCliente = new JMenu("Cliente");
+		mnAlterar.add(mnCliente);
+		
+		JMenu mnFuncionrio = new JMenu("Funcionário");
+		mnAlterar.add(mnFuncionrio);
 	}
 }

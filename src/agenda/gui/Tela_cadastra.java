@@ -43,6 +43,8 @@ import javax.swing.SpinnerListModel;
 import javax.swing.JCheckBox;
 import java.awt.Button;
 import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class Tela_cadastra extends JFrame {
 
@@ -136,11 +138,6 @@ public class Tela_cadastra extends JFrame {
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setBounds(12, 31, 70, 15);
 		contentPane.add(lblNome);
-		
-		JSpinner selecaosexo = new JSpinner();
-		selecaosexo.setModel(new SpinnerListModel(new String[] {"Masculino", "Femino", "Outro"}));
-		selecaosexo.setBounds(390, 12, 91, 19);
-		contentPane.add(selecaosexo);
 		
 		JButton btnEnivar = new JButton("Enivar");
 		btnEnivar.addActionListener(new ActionListener() {
@@ -256,9 +253,16 @@ public class Tela_cadastra extends JFrame {
 		lblCep.setBounds(189, 228, 70, 15);
 		contentPane.add(lblCep);
 		
-		JLabel lblSexo = new JLabel("Sexo");
-		lblSexo.setBounds(390, 31, 70, 15);
+		JLabel lblSexo = new JLabel("Gênero");
+		lblSexo.setBackground(Color.WHITE);
+		lblSexo.setBounds(367, 31, 70, 15);
 		contentPane.add(lblSexo);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBackground(Color.WHITE);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Feminino", "Outro"}));
+		comboBox.setBounds(367, 9, 114, 24);
+		contentPane.add(comboBox);
 
 		
 		
