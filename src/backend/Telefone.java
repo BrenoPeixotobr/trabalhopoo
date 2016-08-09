@@ -7,25 +7,7 @@ public class Telefone {
 	  private boolean zap;
 	  private Scanner ler = new Scanner(System.in);
 
-	  public Telefone(String n, boolean wpp) {
-	    numero = n;
-	    zap = wpp;
-	  }
-
-	  public Telefone () {
-	    String wpp;
-	    System.out.print("Numero: ");
-	    numero = ler.nextLine();
-	    System.out.print("Whatsapp? (S ou N)");
-	    do {
-	      wpp = ler.nextLine();
-	      if(wpp == "S" || wpp == "s")
-	        zap = true;
-	      else if(wpp == "N" || wpp == "n")
-	        zap = false;
-	    } while(wpp != "S" && wpp != "s" && wpp != "N" && wpp != "n");
-	  }
-
+	  
 	public String getNumero() {
 		return numero;
 	}
