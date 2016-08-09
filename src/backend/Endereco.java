@@ -7,6 +7,7 @@ public class Endereco {
 	private String bairro;
 	private String cidade;
 	private String uf;
+
 	public String getRua() {
 		return rua;
 	}
@@ -43,7 +44,5 @@ public class Endereco {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-
-
 
 }

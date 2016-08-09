@@ -1,7 +1,7 @@
 package backend;
 
 public class Cliente extends Pessoa {
-		  private String genero;
+		private String genero;
 
 		public String getGenero() {
 			return genero;
@@ -10,6 +10,5 @@ public class Cliente extends Pessoa {
 		public void setGenero(String genero) {
 			this.genero = genero;
 		}
-		  
-		}
 
+		}
