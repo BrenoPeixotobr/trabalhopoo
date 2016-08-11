@@ -178,7 +178,7 @@ public class Tela_cadastra extends JFrame {
 		adicionar.setBackground(Color.DARK_GRAY);
 		adicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			aux=textTelefone.getText();	
+			aux=textTelefone.getText().toString();	
 			 if(chZap.isSelected()){
 				 t=true;
 				 textTelefone.setText("");
@@ -288,7 +288,7 @@ public class Tela_cadastra extends JFrame {
 					 confere=true;
 				}
 				
-				 if(vazio(textNome)||vazio(textComp)||vazio(textRG)||vazio(textCPF)||vazio(textNumero)||vazio(textRua)||vazio(textBairro)||vazio(textCEP)||vazio(txtcidade)||vazio(texUF)){
+				 if(vazio(textNome)||vazio(textComp)||vazio(textRG)||vazio(textCPF)||vazio(textNumero)||vazio(textRua)||vazio(textBairro)||vazio(textCEP)||vazio(txtcidade)||vazio(texUF)||vazio(textEmail)){
 					 JOptionPane.showMessageDialog(null,"Existem Campos Vazios");
 				 }
 				 else if(tel.isEmpty())
@@ -326,6 +326,7 @@ public class Tela_cadastra extends JFrame {
 				 txtcidade.setText("Montes Claros");
 				 texUF.setText("MG");
 				 textEmail.setText("");
+				 textNumero.setText("");
 				 
 				 }
 			}
