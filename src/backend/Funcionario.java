@@ -1,12 +1,14 @@
 package backend;
 
+import java.util.ArrayList;
+
 public class Funcionario extends Pessoa {
 	  private int matricula;
 	  private String cargo;
 	  
-	  public Funcionario()
+	  public Funcionario(String N, String C, String RG, String em, Endereco E,ArrayList<Telefone> t, String g)
 		{
-			super();
+		  super(N,C,RG,em,E,t);
 		}
 	public int getMatricula() {
 		return matricula;

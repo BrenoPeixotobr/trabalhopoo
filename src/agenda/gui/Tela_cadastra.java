@@ -279,9 +279,25 @@ public class Tela_cadastra extends JFrame {
 		btnEnivar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				try{
+					n =Integer.parseInt(textNumero.getText().toString());
+					confere=false;
+				}
+				catch(NumberFormatException a)
+				{
+					 confere=true;
+				}
 				
 				 if(vazio(textNome)||vazio(textComp)||vazio(textRG)||vazio(textCPF)||vazio(textNumero)||vazio(textRua)||vazio(textBairro)||vazio(textCEP)||vazio(txtcidade)||vazio(texUF)){
 					 JOptionPane.showMessageDialog(null,"Existem Campos Vazios");
+				 }
+				 else if(tel.isEmpty())
+				 {
+					 JOptionPane.showMessageDialog(null,"Nenhum telefone Cadastrado");
+				 }
+				 else if(confere)
+				 {
+					 JOptionPane.showMessageDialog(null,"Número Invalido");
 				 }
 				 else{
 				 genero= cbsexo.getSelectedItem().toString();
@@ -289,16 +305,28 @@ public class Tela_cadastra extends JFrame {
 				 comp = textComp.getText().toString();
 				 rg=textRG.getText().toString();
 				 cpf=textCPF.getText().toString();
-				 n =Integer.parseInt(textNumero.getText().toString());
 				 rua = textRua.getText().toString();
 				 bairro=textBairro.getText().toString();
 				 cep=textCEP.getText().toString();
 				 cidade=txtcidade.getText().toString();
 				 uf=texUF.getText().toString();
+				 email=textEmail.getText().toString();
 				 ende1 = new Endereco(rua, comp, n, bairro, cidade, cep, uf);
 			
 				 c1 = new Cliente(nome,cpf,rg,email,ende1,tel,genero);
-				JOptionPane.showMessageDialog(null,confere);
+				 JOptionPane.showMessageDialog(null,"Usuario Inserdo com sucesso!");
+				 
+				 textNome.setText("");
+				 textComp.setText("");
+				 textRG.setText("");
+				 textCPF.setText("");
+				 textRua.setText("");
+				 textBairro.setText("");
+				 textCEP.setText("39400-00");
+				 txtcidade.setText("Montes Claros");
+				 texUF.setText("MG");
+				 textEmail.setText("");
+				 
 				 }
 			}
 		});
