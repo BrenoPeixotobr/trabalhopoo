@@ -1,9 +1,13 @@
 package backend;
 
-public class Funcinario {
+public class Funcionario extends Pessoa {
 	  private int matricula;
 	  private String cargo;
 	  
+	  public Funcionario()
+		{
+			super();
+		}
 	public int getMatricula() {
 		return matricula;
 	}

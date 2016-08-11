@@ -7,7 +7,6 @@ import javax.xml.crypto.Data;
 
 public class Servico {
 	 private TipoServico tipo;
-	  private float desconto;
 	  private Cliente cliente;
 	  private Funcinario funcionario;
 	  private boolean pago;
@@ -19,12 +18,6 @@ public class Servico {
 	}
 	public void setTipo(TipoServico tipo) {
 		this.tipo = tipo;
-	}
-	public float getDesconto() {
-		return desconto;
-	}
-	public void setDesconto(float desconto) {
-		this.desconto = desconto;
 	}
 	public Cliente getCliente() {
 		return cliente;

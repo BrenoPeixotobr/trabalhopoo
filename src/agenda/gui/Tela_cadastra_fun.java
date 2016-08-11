@@ -15,6 +15,8 @@ import java.awt.Button;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Tela_cadastra_fun extends JFrame {
 
@@ -52,7 +54,7 @@ public class Tela_cadastra_fun extends JFrame {
 	 * Create the frame.
 	 */
 	public Tela_cadastra_fun() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 539, 365);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -102,6 +104,13 @@ public class Tela_cadastra_fun extends JFrame {
 		panel.add(label_3);
 		
 		JButton button = new JButton("Enivar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+			}
+		});
 		button.setBounds(380, 270, 117, 25);
 		panel.add(button);
 		

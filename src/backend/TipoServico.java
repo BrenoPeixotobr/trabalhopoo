@@ -5,7 +5,8 @@ import java.sql.Time;
 public class TipoServico {
 	  private String nomeServico;
 	  private float valor;
-	  private int duracao; // em minuto
+	  private float desconto=0; 
+	  private int duracao; // em minutos
 	  private Time durcacao;
 
 	  public TipoServico (){
@@ -53,6 +54,14 @@ public class TipoServico {
 
 	public void setDurcacao(Time durcacao) {
 		this.durcacao = durcacao;
+	}
+
+	public float getDesconto() {
+		return desconto;
+	}
+
+	public void setDesconto(float desconto) {
+		this.desconto = desconto;
 	}
 
 	  

@@ -38,7 +38,7 @@ public class Tela_inicial extends JFrame {
 	 * Create the frame.
 	 */
 	public Tela_inicial() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(Tela_inicial.EXIT_ON_CLOSE);
 		setBounds(100, 100, 609, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

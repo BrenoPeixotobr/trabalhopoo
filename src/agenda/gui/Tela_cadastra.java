@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
+import javax.swing.text.html.HTMLEditorKit.Parser;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
@@ -33,6 +34,8 @@ import javax.swing.JTable;
 import javax.swing.JList;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
+import backend.Cliente;
+import backend.Endereco;
 import backend.Telefone;
 
 import java.awt.List;
@@ -56,16 +59,23 @@ public class Tela_cadastra extends JFrame {
 	private ArrayList<Telefone> tel= new ArrayList<Telefone>();
 	private String aux;
 	private Boolean t;
-	 private Telefone telefone1 = new Telefone();
-    	 
-    	 
-  
+	private Telefone telefone1 = new Telefone();
+	private Endereco ende1;
+	private Cliente c1;
     
 	
 	private String nome;
-	private int cpf;
+	private String cpf;
 	private String rg;
 	private String email;
+	private String rua;
+	private String bairro;
+	private String comp;
+	private String cidade;
+	private int n;
+	private String cep;
+	private String genero;
+	private String uf;
 	private JTextField textTelefone;
 	private JTextField textRua;
 	private JTextField textBairro;
@@ -74,6 +84,7 @@ public class Tela_cadastra extends JFrame {
 	private JTextField txtcidade;
 	private JTextField texUF;
 	private JTextField textCEP;
+	private boolean confere;
 		
 	
 	/**
@@ -95,8 +106,17 @@ public class Tela_cadastra extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	public  boolean vazio(JTextField A){
+		if(A.getText().trim().isEmpty()==true)
+			return true;
+		else
+			return false;
+		
+		
+	}
+	
 	public Tela_cadastra() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(Tela_cadastra.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 517, 340);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -139,15 +159,6 @@ public class Tela_cadastra extends JFrame {
 		lblNome.setBounds(12, 31, 70, 15);
 		contentPane.add(lblNome);
 		
-		JButton btnEnivar = new JButton("Enivar");
-		btnEnivar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String nome= selecaosexo.getValue().toString();	
-				//JOptionPane.showMessageDialog(null,nome);
-			}
-		});
-		btnEnivar.setBounds(380, 270, 117, 25);
-		contentPane.add(btnEnivar);
 		
 		textTelefone = new JTextField();
 		textTelefone.setBounds(12, 114, 128, 19);
@@ -258,13 +269,41 @@ public class Tela_cadastra extends JFrame {
 		lblSexo.setBounds(367, 31, 70, 15);
 		contentPane.add(lblSexo);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBackground(Color.WHITE);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Feminino", "Outro"}));
-		comboBox.setBounds(367, 9, 114, 24);
-		contentPane.add(comboBox);
-
+		JComboBox cbsexo = new JComboBox();
+		cbsexo.setBackground(Color.WHITE);
+		cbsexo.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Feminino", "Outro"}));
+		cbsexo.setBounds(367, 9, 114, 24);
+		contentPane.add(cbsexo);
 		
+		JButton btnEnivar = new JButton("Enivar");
+		btnEnivar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				 if(vazio(textNome)||vazio(textComp)||vazio(textRG)||vazio(textCPF)||vazio(textNumero)||vazio(textRua)||vazio(textBairro)||vazio(textCEP)||vazio(txtcidade)||vazio(texUF)){
+					 JOptionPane.showMessageDialog(null,"Existem Campos Vazios");
+				 }
+				 else{
+				 genero= cbsexo.getSelectedItem().toString();
+				 nome=textNome.getText();
+				 comp = textComp.getText().toString();
+				 rg=textRG.getText().toString();
+				 cpf=textCPF.getText().toString();
+				 n =Integer.parseInt(textNumero.getText().toString());
+				 rua = textRua.getText().toString();
+				 bairro=textBairro.getText().toString();
+				 cep=textCEP.getText().toString();
+				 cidade=txtcidade.getText().toString();
+				 uf=texUF.getText().toString();
+				 ende1 = new Endereco(rua, comp, n, bairro, cidade, cep, uf);
+			
+				 c1 = new Cliente(nome,cpf,rg,email,ende1,tel,genero);
+				JOptionPane.showMessageDialog(null,confere);
+				 }
+			}
+		});
+		btnEnivar.setBounds(380, 270, 117, 25);
+		contentPane.add(btnEnivar);
 		
 		
 	}

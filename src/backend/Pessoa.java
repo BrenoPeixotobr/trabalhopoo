@@ -10,6 +10,16 @@ public class Pessoa {
 	protected Endereco ende;
 	
 	protected  ArrayList<Telefone> tel;
+	
+	public Pessoa(String N, String C, String RG, String em, Endereco E,ArrayList<Telefone> t){
+		nome=N;
+		cpf=C;
+		rg=RG;
+		email=em;
+		ende=E;
+		tel=t;		
+		}
+	
 	public String getCpf() {
 		return cpf;
 	}

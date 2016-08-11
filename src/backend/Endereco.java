@@ -6,7 +6,18 @@ public class Endereco {
 	private int numero;
 	private String bairro;
 	private String cidade;
+	private String cep; 
 	private String uf;
+	
+	public Endereco(String r, String c, int n, String b, String cid,String CEP, String Uf){
+		rua=r;
+		complento=c;
+		numero=n;
+		bairro=b;
+		cidade=cid;
+		cep=CEP;
+		uf=Uf;		
+	}
 
 	public String getRua() {
 		return rua;
@@ -43,6 +54,13 @@ public class Endereco {
 	}
 	public void setUf(String uf) {
 		this.uf = uf;
+	}
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 
 }

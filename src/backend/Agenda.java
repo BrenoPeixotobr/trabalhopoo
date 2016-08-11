@@ -2,7 +2,7 @@ package backend;
 
 public class Agenda {
 	private Pessoa p;
-	private Funcinario f;
+	private Funcionario f;
 	private Telefone tele;
 	private Cliente c;
 	private Endereco e;
