@@ -27,7 +27,7 @@ public class Agenda {
 
 
 
-	public Funcinario getF() {
+	public Funcionario getF() {
 		return f;
 	}
 

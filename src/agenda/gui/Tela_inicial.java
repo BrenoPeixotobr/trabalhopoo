@@ -70,6 +70,21 @@ public class Tela_inicial extends JFrame {
 		});
 		mnCadastro.add(mntmCliente);
 		
+		JMenuItem mntmCargo = new JMenuItem("Cargo");
+		mntmCargo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Tela_cargo tela3 = new Tela_cargo();
+				tela3.setVisible(true);
+				
+			}
+		});
+		mnCadastro.add(mntmCargo);
+		
+		JMenuItem mntmServio = new JMenuItem("Serviço");
+		mnCadastro.add(mntmServio);
+		
 		JMenu mnAlterar = new JMenu("Alterar");
 		menuBar.add(mnAlterar);
 		
