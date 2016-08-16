@@ -12,7 +12,7 @@ public class Agenda {
 	public void comentario(){
 		System.out.println("Nada!...");
 	}
-	
+
 	public Pessoa getP() {
 		return p;
 	}
@@ -34,7 +34,7 @@ public class Agenda {
 
 
 
-	public void setF(Funcinario f) {
+	public void setF(Funcionario f) {
 		this.f = f;
 	}
 

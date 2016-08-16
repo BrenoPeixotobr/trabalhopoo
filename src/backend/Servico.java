@@ -8,11 +8,11 @@ import javax.xml.crypto.Data;
 public class Servico {
 	 private TipoServico tipo;
 	  private Cliente cliente;
-	  private Funcinario funcionario;
+	  private Funcionario funcionario;
 	  private boolean pago;
 	  private Data dataser;
 	  private Time hora;
-	  
+
 	public TipoServico getTipo() {
 		return tipo;
 	}
@@ -25,10 +25,10 @@ public class Servico {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	public Funcinario getFuncionario() {
+	public Funcionario getFuncionario() {
 		return funcionario;
 	}
-	public void setFuncionario(Funcinario funcionario) {
+	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
 	public boolean isPago() {
@@ -49,6 +49,6 @@ public class Servico {
 	public void setHora(Time hora) {
 		this.hora = hora;
 	}
-	  
+
 
 }
