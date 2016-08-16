@@ -7,7 +7,8 @@ public class ConexaoBD {
 
 		//****************ABRE CONEXAO COM O BANCO**********************************
 	  public void conectarBD(){
-		String url = "jdbc:mysql://localhost:3306/Agenda";
+		//String url = "jdbc:mysql://localhost:3306/Agenda";
+		String url = "jdbc:mysql://localhost:3306/Agenda2";
 		String login = "Agenda";
 		String senha = "ifnmg@2016";
 
@@ -44,11 +45,11 @@ public class ConexaoBD {
 				pst.setString(3, cliente.getRg());
 				pst.setString(4, cliente.getEmail());
 				pst.setString(5, cliente.getEmail());
-				System.out.println("Inserido com sucesso");
+				System.out.println("cliente inserido com sucesso");
 				return true;
 			}
 			catch (SQLException erro) {
-				System.out.println("Erro ao inserir!");
+				System.out.println("Erro ao inserir cliente!");
 				return false;
 			}
 
@@ -57,7 +58,26 @@ public class ConexaoBD {
 
 		//****************INSERE FUNCIONARIO****************************************
 		public static boolean insere( Funcionario funcionario) {
+			conectarBD();
+			String sql = "insert into funcionario(cpf, nome, rg, email, matricula, cargo) values(?,?,?,?,?,?);";
 
+			try {
+				PreparedStatement pst = con.prepareStatement( sql );
+				pst.setString( 1, funcionario.getCpf() );
+				pst.setString( 2, funcionario.getNome() );
+				pst.setString( 3, funcionario.getRg() );
+				pst.setString( 4, funcionario.getEmail() );
+				pst.setInt( 5, funcionario.getMatricula() );
+				pst.setString( 6, funcionario.getCargo() );
+				System.out.println("Funcionario inserido com sucesso!");
+				return true;
+			}
+			catch (SQLException erro) {
+				System.out.println("Erro ao inserir funcionario");
+				return false;
+			}
+
+			desconectarBD();
 		}
 
 		//****************UPDATE****************************************************
