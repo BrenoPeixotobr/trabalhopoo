@@ -81,7 +81,12 @@ public class ConexaoBD {
 					stmt.executeUpdate(sql);
 				}
 				//****************Inserir Funcionario***********************************
-				sql = "insert into funcionario(cpf_pessoa, )";
+				//*****Encontrando o cargo do funcionario*******************************
+				sql = "select * from cargo where nome = " + pessoa.getCargo() + ";";
+				 ResultSet rs = stmt.executeQuery(sql);
+				 String c = rs.getString("cargo");
+				 int cargo = Integer.parseInt(c);
+				sql = "insert into funcionario(cpf_pessoa, senha, cargo, nivel) valeus("+pessoa.getCpf()+",123456"+cargo+","+pessoa.getNivel()+")";
 
 				System.out.println("Funcionario inserido com sucesso!");
 				return true;

@@ -5,12 +5,14 @@ import java.util.ArrayList;
 public class Funcionario extends Pessoa {
   private int matricula;
   private String cargo;
+  private int nivel;
 
-  public Funcionario(String N, String C, String RG, String em, Endereco E, Telefone t, int mat, String car)
+  public Funcionario(String N, String C, String RG, String em, Endereco E, Telefone t, int mat, String car, int n)
 	{
 	  super(N,C,RG,em,E,t);
 		matricula = mat;
 	  cargo=car;
+    nivel = n;
 	}
 
 	public Funcionario(){
@@ -20,6 +22,14 @@ public class Funcionario extends Pessoa {
 		System.out.print("Cargo: ");
 		cargo = ler.next();
 	}
+
+  public int getNivel(){
+    return nivel;
+  }
+
+  public void setNivel(int n){
+    nivel = n;
+  }
 
 	public int getMatricula() {
 		return matricula;
