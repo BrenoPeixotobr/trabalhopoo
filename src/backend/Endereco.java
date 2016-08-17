@@ -18,18 +18,18 @@ public class Endereco {
 
 	public Endereco() {
 		System.out.print("Rua: ");
-		this.rua = ler.next();
+		this.rua = ler.nextLine();
 		System.out.print("Numero: ");
 		this.numero = ler.nextInt();
 		ler.nextLine();
 		System.out.print("Complemento: ");
-		this.complemento = ler.next();
+		this.complemento = ler.nextLine();
 		System.out.print("Bairro: ");
-		this.bairro = ler.next();
+		this.bairro = ler.nextLine();
 		System.out.print("Cidade: ");
-		this.cidade = ler.next();
+		this.cidade = ler.nextLine();
 		System.out.print("Estado: ");
-		this.uf = ler.next();
+		this.uf = ler.nextLine();
 	}
 
 	public String getRua() {
@@ -82,4 +82,3 @@ public class Endereco {
 	}
 
 }
-

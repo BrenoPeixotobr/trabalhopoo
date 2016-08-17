@@ -14,11 +14,9 @@ public class Telefone {
 
 	public Telefone() {
 		System.out.print("Telefone: ");
-		numero = ler.next();
-		ler.nextLine();
-		System.out.print("E whatsapp? (s para sim ou qq coisa para nao): ");
+		numero = ler.nextLine();
+		System.out.print("Eh whatsapp? (s para sim ou qq coisa para nao): ");
 		char wpp = ler.next().charAt(0);
-		//System.out.println("vc digitou: " + wpp);
 		if (wpp == 's' || wpp == 'S'){
 			zap = true;
 		}
@@ -54,4 +52,3 @@ public class Telefone {
 	}
 
 }
-

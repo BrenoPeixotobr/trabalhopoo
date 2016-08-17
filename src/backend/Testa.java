@@ -1,5 +1,4 @@
 import java.util.Scanner;
-//import backend.Telefone;
 
 public class Testa {
 

@@ -36,8 +36,7 @@ public class Funcionario extends Pessoa {
 
 	public void Imprime() {
 		super.Imprime();
-		System.out.print("Matricula: "+matricula+"\nCargo: "+cargo);
+		System.out.println("Matricula: "+matricula+"\nCargo: "+cargo);
 	}
 
 }
-

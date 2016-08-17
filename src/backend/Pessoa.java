@@ -19,7 +19,7 @@ public class Pessoa {
 
 	public Pessoa () {
 		System.out.print("Nome: ");
-		nome = ler.next();
+		nome = ler.nextLine();
 		System.out.print("CPF: ");
 		cpf = ler.next();
 		System.out.print("RG: ");
@@ -78,4 +78,3 @@ public class Pessoa {
 	}
 
 }
-

@@ -28,8 +28,7 @@ public class Cliente extends Pessoa {
 
 		public void Imprime() {
 			super.Imprime();
-			System.out.print("Genero: " + genero+"\n");
+			System.out.println("Genero: " + genero+"\n");
 		}
 
 }
-
