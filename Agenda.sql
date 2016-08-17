@@ -19,6 +19,7 @@ create table pessoa(
 
 create table telefone(
     cpf_pessoa integer not null,
+    numero varchar(50),
     zap boolean default false,
     constraint pf_tel_pe foreign key (cpf_pessoa)
         references pessoa (cpf)
@@ -33,7 +34,7 @@ create table endereco(
     bairro varchar(100) not null,
     cidade varchar(100) default "Montes Claros",
     uf varchar(8) default "MG",
-    cep varchar(15), 
+    cep varchar(15),
     constraint pf_cpf foreign key (cpf_pessoa)
         references pessoa (cpf)
         on delete restrict on update cascade
@@ -60,11 +61,11 @@ create table funcionario(
     cargo int not null,
     nivel int default 1,
         constraint pk_fun primary key (matricula),
-        
+
         constraint pf_cpf_fun foreign key (cpf_pessoa)
         references pessoa (cpf)
         on delete restrict on update cascade,
-        
+
         constraint pf_cargo foreign key (cargo)
         references cargo (codigo)
         on delete restrict on update cascade
@@ -85,11 +86,11 @@ create table servico(
     data_aten date not null,
     hora_aten time not null,
     pago boolean,
-    
+
         constraint pfcpfcli foreign key (cpf_pessoa)
         references cliente (cpf_pessoa)
         on delete restrict on update cascade,
-        
+
         constraint pf_codigo_fun foreign key (codigo_funcionario)
         references funcionario (matricula)
         on delete restrict on update cascade

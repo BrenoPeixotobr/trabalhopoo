@@ -8,13 +8,13 @@ public class Pessoa {
 	protected Scanner ler = new Scanner(System.in);
 	protected  ArrayList<Telefone> tel = new ArrayList<Telefone>();
 
-	public Pessoa(String N, String C, String RG, String em, Endereco E, Telefone t){
+	public Pessoa(String N, String C, String RG, String em, Endereco E, ArrayList<Telefone> t){
 		nome=N;
 		cpf=C;
 		rg=RG;
 		email=em;
 		ende=E;
-		tel.add(t);
+		tel = t;
 	}
 
 	public Pessoa () {

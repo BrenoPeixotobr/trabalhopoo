@@ -38,10 +38,10 @@ public class Endereco {
 	public void setRua(String rua) {
 		this.rua = rua;
 	}
-	public String getcomplemento() {
+	public String getComplemento() {
 		return complemento;
 	}
-	public void setcomplemento(String complemento) {
+	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
 	public int getNumero() {
