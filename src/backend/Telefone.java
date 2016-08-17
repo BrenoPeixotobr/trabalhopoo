@@ -44,12 +44,12 @@ public class Telefone {
 	}
 
 	public void Imprime(){
-		System.out.println("Numero: " + this.getNumero());
+		System.out.print( " " + numero );
 		if (this.isZap() == true) {
-			System.out.println("E whatsapp!");
+			System.out.println(" (E whatsapp)");
 		}
 		else {
-			System.out.println("Nao eh whatsapp!");
+			System.out.println(" (Nao eh whatsapp)");
 		}
 	}
 

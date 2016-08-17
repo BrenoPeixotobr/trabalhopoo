@@ -71,9 +71,9 @@ public class Pessoa {
 	public void Imprime() {
 		System.out.print("\nNome: "+nome+"\nCPF: "+cpf+"\nRG: "+rg);
 		ende.Imprime();
-		System.out.println("Telefone(s)");
+		System.out.print("Telefone(s):");
 		for (Telefone t : tel){
-			System.out.println(t.getNumero());
+			t.Imprime();
 		}
 	}
 
