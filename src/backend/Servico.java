@@ -6,7 +6,7 @@ import java.sql.Time;
 import javax.xml.crypto.Data;
 
 public class Servico {
-	 private TipoServico tipo;
+	 	private TipoServico tipo;
 	  private Cliente cliente;
 	  private Funcionario funcionario;
 	  private boolean pago;
@@ -49,6 +49,5 @@ public class Servico {
 	public void setHora(Time hora) {
 		this.hora = hora;
 	}
-
 
 }
