@@ -6,7 +6,7 @@ public class ConexaoBD {
 	  public static Connection con=null;
 
 		//****************ABRE CONEXAO COM O BANCO**********************************
-	  public void conectarBD(){
+	  public static void conectarBD(){
 		//String url = "jdbc:mysql://localhost:3306/Agenda";
 		String url = "jdbc:mysql://localhost:3306/Agenda2";
 		String login = "Agenda";
@@ -35,10 +35,9 @@ public class ConexaoBD {
 
 		//****************INSERE CLIENTE********************************************
 		public static boolean insere( Cliente cliente) {
-			conectarBD();
-			String sql = "insert into cliente(cpf, nome, rg, email, genero) values(?,?,?,?,?);";
-
 			try {
+				conectarBD();
+				String sql = "insert into cliente(cpf, nome, rg, email, genero) values(?,?,?,?,?);";
 				PreparedStatement pst = con.prepareStatement(sql);
 				pst.setString(1, cliente.getCpf());
 				pst.setString(2, cliente.getNome());
@@ -52,8 +51,9 @@ public class ConexaoBD {
 				System.out.println("Erro ao inserir cliente!");
 				return false;
 			}
-
-			desconectarBD();
+			finally{
+				desconectarBD();
+			}
 		}
 
 		//****************INSERE FUNCIONARIO****************************************
@@ -76,8 +76,9 @@ public class ConexaoBD {
 				System.out.println("Erro ao inserir funcionario");
 				return false;
 			}
-
-			desconectarBD();
+			finally{
+				desconectarBD();
+			}
 		}
 
 		//****************UPDATE****************************************************
