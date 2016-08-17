@@ -1,22 +1,35 @@
 package backend;
+import java.util.Scanner;
 
 public class Endereco {
-	private String rua;
-	private String complento;
+	private String rua, complemento, bairro, cidade, cep, uf;
 	private int numero;
-	private String bairro;
-	private String cidade;
-	private String cep; 
-	private String uf;
-	
+	private Scanner ler = new Scanner(System.in);
+
 	public Endereco(String r, String c, int n, String b, String cid,String CEP, String Uf){
-		rua=r;
-		complento=c;
-		numero=n;
-		bairro=b;
-		cidade=cid;
-		cep=CEP;
-		uf=Uf;		
+		rua = r;
+		complemento = c;
+		numero = n;
+		bairro = b;
+		cidade = cid;
+		cep = CEP;
+		uf = Uf;
+	}
+
+	public Endereco() {
+		System.out.print("Rua: ");
+		this.rua = ler.next();
+		System.out.print("Numero: ");
+		this.numero = ler.nextInt();
+		ler.nextLine();
+		System.out.print("Complemento: ");
+		this.complemento = ler.next();
+		System.out.print("Bairro: ");
+		this.bairro = ler.next();
+		System.out.print("Cidade: ");
+		this.cidade = ler.next();
+		System.out.print("Estado: ");
+		this.uf = ler.next();
 	}
 
 	public String getRua() {
@@ -25,11 +38,11 @@ public class Endereco {
 	public void setRua(String rua) {
 		this.rua = rua;
 	}
-	public String getComplento() {
-		return complento;
+	public String getcomplemento() {
+		return complemento;
 	}
-	public void setComplento(String complento) {
-		this.complento = complento;
+	public void setcomplemento(String complemento) {
+		this.complemento = complemento;
 	}
 	public int getNumero() {
 		return numero;
@@ -63,4 +76,9 @@ public class Endereco {
 		this.cep = cep;
 	}
 
+	public void Imprime() {
+		System.out.println("\nRua: "+rua+"\nNumero: "+numero+"\nComplemento: "+complemento+"\nBairro: "+bairro+"\nCidade: "+cidade+"\nEstado: "+uf+"\n");
+	}
+
 }
+
