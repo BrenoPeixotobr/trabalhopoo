@@ -77,7 +77,7 @@ public class Endereco {
 	}
 
 	public void Imprime() {
-		System.out.println("\nRua: "+rua+"\nNumero: "+numero+"\nComplemento: "+complemento+"\nBairro: "+bairro+"\nCidade: "+cidade+"\nEstado: "+uf+"\n");
+		System.out.println("\nRua: "+rua+"\nNumero: "+numero+"\nComplemento: "+complemento+"\nBairro: "+bairro+"\nCidade: "+cidade+"\nEstado: "+uf);
 	}
 
 }

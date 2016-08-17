@@ -1,9 +1,8 @@
 import java.util.Scanner;
-import java.util.InputMismatchException;
 
 public class Testa {
 
-  public static void main(String[] args){
+  public static void main(String[] args) {
     Scanner ler = new Scanner(System.in);
     Integer user = 4;
 
@@ -29,3 +28,4 @@ public class Testa {
 
   }
 }
+

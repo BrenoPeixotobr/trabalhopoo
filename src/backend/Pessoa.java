@@ -1,25 +1,36 @@
 package backend;
-
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Pessoa {
-	protected String cpf;
-	protected String nome;
-	protected String rg;
-	protected String email;
-	protected Endereco ende;
-	
-	protected  ArrayList<Telefone> tel;
-	
-	public Pessoa(String N, String C, String RG, String em, Endereco E,ArrayList<Telefone> t){
+	protected String cpf, nome, rg, email;
+	Endereco ende;
+	protected Scanner ler = new Scanner(System.in);
+	protected  ArrayList<Telefone> tel = new ArrayList<Telefone>();
+
+	public Pessoa(String N, String C, String RG, String em, Endereco E, Telefone t){
 		nome=N;
 		cpf=C;
 		rg=RG;
 		email=em;
 		ende=E;
-		tel=t;		
-		}
-	
+		tel.add(t);
+	}
+
+	public Pessoa () {
+		System.out.print("Nome: ");
+		nome = ler.next();
+		System.out.print("CPF: ");
+		cpf = ler.next();
+		System.out.print("RG: ");
+		rg = ler.next();
+		System.out.print("E-mail: ");
+		email = ler.next();
+		ende = new Endereco();
+		Telefone t = new Telefone();
+		tel.add(t);
+	}
+
 	public String getCpf() {
 		return cpf;
 	}
@@ -57,4 +68,14 @@ public class Pessoa {
 		this.tel = tel;
 	}
 
+	public void Imprime() {
+		System.out.print("\nNome: "+nome+"\nCPF: "+cpf+"\nRG: "+rg);
+		ende.Imprime();
+		System.out.println("Telefone(s)");
+		for (Telefone t : tel){
+			System.out.println(t.getNumero());
+		}
+	}
+
 }
+
