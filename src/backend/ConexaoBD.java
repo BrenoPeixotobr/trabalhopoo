@@ -71,6 +71,7 @@ public class ConexaoBD {
 				pst.setString(3, rg);
 				pst.setString(4, email);
 				pst.executeUpdate();
+				System.out.println("\n\nBreakPoint!\n\n\n");
 				//System.out.println("Pessoa inserida");
 				return true;
 			}
@@ -179,7 +180,6 @@ public class ConexaoBD {
 		//****************INSERE FUNCIONARIO****************************************
 		public static boolean insere( Funcionario pessoa) {
 			try {
-				conectarBD();
 				//****************Inserir Pessoa****************************************
 				insere( pessoa.getCpf(), pessoa.getNome(), pessoa.getRg(), pessoa.getEmail() );
 				//****************Inserir Endereco**************************************
@@ -189,6 +189,7 @@ public class ConexaoBD {
 				//****************Encontrando o cargo do funcionario********************
 				int cargo = CodigoCargo( pessoa.getCargo() );
 				//****************Inserir Funcionario***********************************
+				conectarBD();
 				if (cargo != -1) {
 					String sql = "insert into funcionario(cpf_pessoa, senha, cargo, nivel) valeus("+pessoa.getCpf()+",123456"+cargo+","+pessoa.getNivel()+")";
 					Statement stmt = con.createStatement();
