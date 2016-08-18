@@ -7,15 +7,16 @@ public class Testa {
     Integer user = 4;
 
     do {
-      System.out.println("\n0 - Sair\n1 - Inserir\n2 - Atualizar\n3 - Deletar");
+      System.out.print("\n\n0 - Sair\n1 - Inserir\n2 - Atualizar\n3 - Deletar\n\n>>>  ");
       user = ler.nextInt();
       switch(user){
         case 0:
           break;
         case 1:
           //insere();
-          Funcionario f = new Funcionario();
-          f.Imprime();
+          Cliente c = new Cliente();
+          c.Imprime();
+          ConexaoBD.insere(c);
           break;
         case 2:
           //Update();

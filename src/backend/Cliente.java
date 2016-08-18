@@ -6,7 +6,7 @@ public class Cliente extends Pessoa {
 
 		private String genero;
 
-		public Cliente(String N, String C, String RG, String em, Endereco E, Telefone t, String g)
+		public Cliente(String N, String C, String RG, String em, Endereco E, ArrayList<Telefone> t, String g)
 		{
 			super(N,C,RG,em,E,t);
 			genero=g;

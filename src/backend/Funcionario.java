@@ -7,11 +7,11 @@ public class Funcionario extends Pessoa {
   private String cargo;
   private int nivel;
 
-  public Funcionario(String N, String C, String RG, String em, Endereco E, Telefone t, int mat, String car, int n)
+  public Funcionario(String N, String C, String RG, String em, Endereco E, ArrayList<Telefone> t, int mat, String car, int n)
 	{
 	  super(N,C,RG,em,E,t);
 		matricula = mat;
-	  cargo=car;
+	  cargo = car;
     nivel = n;
 	}
 
@@ -19,8 +19,9 @@ public class Funcionario extends Pessoa {
 		super();
 		System.out.print("Matricula: ");
 		matricula = ler.nextInt();
+    ler.nextLine();
 		System.out.print("Cargo: ");
-		cargo = ler.next();
+		cargo = ler.nextLine();
 	}
 
   public int getNivel(){

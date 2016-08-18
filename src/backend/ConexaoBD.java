@@ -7,10 +7,10 @@ public class ConexaoBD {
 
 		//****************ABRE CONEXAO COM O BANCO**********************************
 	  public static void conectarBD(){
-		//String url = "jdbc:mysql://localhost:3306/Agenda";
-		String url = "jdbc:mysql://localhost:3306/Agenda2";
-		String login = "Agenda";
-		String senha = "ifnmg@2016";
+		String url = "jdbc:mysql://localhost:3306/Agenda";
+		//String url = "jdbc:mysql://localhost:3306/Agenda2";
+		String login = "root";
+		String senha = "";
 
 		try{
 			con =  DriverManager.getConnection(url, login,senha);
@@ -39,11 +39,11 @@ public class ConexaoBD {
 				conectarBD();
 				String sql = "insert into cliente(cpf, nome, rg, email, genero) values(?,?,?,?,?);";
 				PreparedStatement pst = con.prepareStatement(sql);
-				pst.setString(1, cliente.getCpf());
-				pst.setString(2, cliente.getNome());
-				pst.setString(3, cliente.getRg());
-				pst.setString(4, cliente.getEmail());
-				pst.setString(5, cliente.getEmail());
+				pst.setString(1, pessoa.getCpf());
+				pst.setString(2, pessoa.getNome());
+				pst.setString(3, pessoa.getRg());
+				pst.setString(4, pessoa.getEmail());
+				pst.setString(5, pessoa.getEmail());
 				System.out.println("cliente " + pessoa.getNome() + " inserido com sucesso");
 				return true;
 			}
@@ -63,7 +63,7 @@ public class ConexaoBD {
 				//****************Inserir Pessoa****************************************
 				String sql = "insert into pessoa(cpf, nome, rg, email) values("+pessoa.getCpf()+","+pessoa.getNome()+","+pessoa.getRg()+","+pessoa.getEmail()+");";
 				Statement stmt = con.createStatement();
-				executeUpdate(sql);
+				stmt.executeUpdate(sql);
 				//****************Inserir Endereco**************************************
 				Endereco endereco = pessoa.getEnde();
 				String rua = endereco.getRua();
@@ -99,9 +99,9 @@ public class ConexaoBD {
 				desconectarBD();
 			}
 		}
-
+/*
 		//****************UPDATE FUNCIONARIO****************************************
-		public static boolean update( Funcionario funcionario) {
+		public static boolean update( Funcionario funcionario) throws SQLException {
 			try {
 				conectarBD();
 				String sql = ";";
@@ -110,7 +110,7 @@ public class ConexaoBD {
 				return true;
 			}
 			catch (SQLException erro) {
-				System.out.println("Erro ao atualizar funcionario");
+				System.out.println( "Erro ao atualizar funcionario" );
 				return false;
 			}
 			finally{
@@ -127,14 +127,15 @@ public class ConexaoBD {
 				System.out.println( "Cliente atualizado com sucesso!" );
 				return true;
 			}
-			catch (SQLException erro) {
-				System.out.println( "Erro ao atualizar funcionario" );
+			catch(SQLException erro) {
+				System.out.println( "Erro ao atualizar cliente" );
 				return false;
 			}
 			finally{
 				desconectarBD();
 			}
 		}
+*/
 
 		//****************DELETE FUNCIONARIO****************************************
 		public static boolean delete( Funcionario pessoa) {
@@ -159,7 +160,7 @@ public class ConexaoBD {
 				return true;
 			}
 			catch (SQLException erro) {
-				System.out.println( "Erro ao excluir cliente" );
+				System.out.println( "Erro ao excluir funcionario" );
 				return false;
 			}
 			finally{

@@ -21,9 +21,9 @@ public class Pessoa {
 		System.out.print("Nome: ");
 		nome = ler.nextLine();
 		System.out.print("CPF: ");
-		cpf = ler.next();
+		cpf = ler.nextLine();
 		System.out.print("RG: ");
-		rg = ler.next();
+		rg = ler.nextLine();
 		System.out.print("E-mail: ");
 		email = ler.next();
 		ende = new Endereco();
