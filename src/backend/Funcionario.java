@@ -1,4 +1,4 @@
-package backend;
+//package backend;
 
 import java.util.ArrayList;
 
@@ -22,6 +22,9 @@ public class Funcionario extends Pessoa {
     ler.nextLine();
 		System.out.print("Cargo: ");
 		cargo = ler.nextLine();
+    System.out.print("Nivel: ");
+    nivel = ler.nextInt();
+    ler.nextLine();
 	}
 
   public int getNivel(){

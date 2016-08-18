@@ -1,12 +1,13 @@
-package backend;
+//package backend;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ConexaoBD {
 
 	  public static Connection con=null;
 
 		//****************ABRE CONEXAO COM O BANCO**********************************
-	  public static void conectarBD(){
+	  private static void conectarBD(){
 		String url = "jdbc:mysql://localhost:3306/Agenda";
 		//String url = "jdbc:mysql://localhost:3306/Agenda2";
 		String login = "root";
@@ -16,14 +17,17 @@ public class ConexaoBD {
 			con =  DriverManager.getConnection(url, login,senha);
 		}
 		catch( SQLException sqlE ) {
-				System.out.print("Nao pode conectar ao Banco: "+sqlE);
+				System.out.print("SQL: Nao pode conectar ao Banco: "+sqlE);
 		}
 	  }
 
 		//****************FECHA CONEXAO COM O BANCO*********************************
-		public static boolean desconectarBD(){
+		private static boolean desconectarBD(){
 			try {
-				con.close();
+				if (con != null) {
+					con.close();
+					return true;
+				}
 				return true;
 			}
 			catch( SQLException onConClose ) {
@@ -48,8 +52,124 @@ public class ConexaoBD {
 				return true;
 			}
 			catch (SQLException erro) {
-				System.out.println("Erro ao inserir cliente!");
+				System.out.println("SQL: Erro ao inserir cliente!");
 				return false;
+			}
+			finally{
+				desconectarBD();
+			}
+		}
+
+		//****************INSERE PESSOA*********************************************
+		public static boolean insere( String cpf, String nome, String rg, String email) {
+			try {
+				conectarBD();
+				String sql = "insert into pessoa(cpf, nome, rg, email) values(?,?,?,?);";
+				PreparedStatement pst = con.prepareStatement(sql);
+				pst.setString(1, cpf);
+				pst.setString(2, nome);
+				pst.setString(3, rg);
+				pst.setString(4, email);
+				pst.executeUpdate();
+				//System.out.println("Pessoa inserida");
+				return true;
+			}
+			catch (SQLException erro) {
+				System.out.println("SQL: Erro ao inserir Pessoa");
+				return false;
+			}
+			finally{
+				desconectarBD();
+			}
+		}
+
+		//****************INSERE ENDERECO****************************************
+		public static boolean insere( String cpf, Endereco endereco) {
+			try {
+				conectarBD();
+				String sql = "insert into endereco(cpf_pessoa, rua, numero, complemento, bairro, cidade, uf, cep) values(?,?,?,?,?,?,?,?)";
+				PreparedStatement pst = con.prepareStatement(sql);
+
+				pst.setString( 1, cpf);
+				pst.setString( 2, endereco.getRua() );
+				pst.setInt( 3, endereco.getNumero() );
+				pst.setString( 4, endereco.getComplemento() );
+				pst.setString( 5, endereco.getBairro() );
+				pst.setString( 6, endereco.getCidade() );
+				pst.setString( 7, endereco.getUf() );
+				pst.setString( 8, endereco.getCep() );
+				pst.executeUpdate();
+
+				return true;
+			}
+			catch (SQLException erro) {
+				System.out.println("SQL: Erro ao inserir Endereco");
+				return false;
+			}
+			finally{
+				desconectarBD();
+			}
+		}
+
+		//****************INSERE UM ÚNICO TELEFONE**********************************
+		public static boolean insere( String cpf, Telefone telefone) {
+			try {
+				conectarBD();
+
+				String sql = "insert into telefone(cpf_pessoa, numero, zap) values(?,?,?)";
+				PreparedStatement pst = con.prepareStatement(sql);
+				pst.setString( 1, cpf);
+				pst.setString( 2, telefone.getNumero() );
+				pst.setBoolean( 3, telefone.isZap() );
+				pst.executeUpdate();
+
+				//System.out.println("Telefone " + telefone.getNumero() + " inserido com sucesso!");
+				return true;
+			}
+			catch (SQLException erro) {
+				System.out.println("SQL: Erro ao inserir Telefone -> " + telefone.getNumero() );
+				return false;
+			}
+			finally{
+				desconectarBD();
+			}
+		}
+
+		//****************INSERE VARIOS TELEFONES***********************************
+		public static boolean insere( String cpf, ArrayList<Telefone> telefones) {
+			for (Telefone tel : telefones) {
+				insere(cpf, tel);
+			}
+
+			//System.out.println("Telefones inseridos com sucesso!");
+			return true;
+		}
+
+		//****************ENCONTRA CARGO********************************************
+		public static int CodigoCargo( String nomeCargo) {
+			try {
+				conectarBD();
+
+				String sql = "select * from cargo;";
+				//PreparedStatement pst = con.prepareStatement(sql);
+				//pst.setString( 1, nomeCargo );
+				//ResultSet rs = pst.executeQuery();
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+
+				while ( rs.next() ) {
+					if (nomeCargo == rs.getString("nome") ){
+						String cargo = rs.getString("codigo");
+						int codigoCargo = Integer.parseInt(cargo);
+						System.out.println("Cargo " + nomeCargo + " codigo: " + codigoCargo);
+						return codigoCargo;
+					}
+				}
+				return (-1);
+			}
+			catch (SQLException erro) {
+				System.out.println("SQL: Erro ao procurar cargo");
+				return (-1);
 			}
 			finally{
 				desconectarBD();
@@ -61,44 +181,35 @@ public class ConexaoBD {
 			try {
 				conectarBD();
 				//****************Inserir Pessoa****************************************
-				String sql = "insert into pessoa(cpf, nome, rg, email) values("+pessoa.getCpf()+","+pessoa.getNome()+","+pessoa.getRg()+","+pessoa.getEmail()+");";
-				Statement stmt = con.createStatement();
-				stmt.executeUpdate(sql);
+				insere( pessoa.getCpf(), pessoa.getNome(), pessoa.getRg(), pessoa.getEmail() );
 				//****************Inserir Endereco**************************************
-				Endereco endereco = pessoa.getEnde();
-				String rua = endereco.getRua();
-				int numero = endereco.getNumero();
-				String complemento = endereco.getComplemento();
-				String bairro = endereco.getBairro();
-				String cidade = endereco.getCidade();
-				String estado = endereco.getUf();
-				String cpf = endereco.getCep();
-				sql = "insert into endereco(cpf_pessoa, rua, numero, complemento, bairro, cidade, uf, cep) values("+pessoa.getCpf()+","+rua+","+numero+","+complemento+","+bairro+","+cidade+","+estado+");";
-				stmt.executeUpdate(sql);
+				insere( pessoa.getCpf(), pessoa.getEnde() );
 				//****************Inserir Telefone**************************************
-				for (Telefone tel : pessoa.getTel()){
-					sql = "insert into telefone(cpf_pessoa, numero, zap) values("+pessoa.getCpf()+","+tel.getNumero()+","+tel.isZap()+");";
-					stmt.executeUpdate(sql);
-				}
+				insere( pessoa.getCpf(), pessoa.getTel() );
+				//****************Encontrando o cargo do funcionario********************
+				int cargo = CodigoCargo( pessoa.getCargo() );
 				//****************Inserir Funcionario***********************************
-				//*****Encontrando o cargo do funcionario*******************************
-				sql = "select * from cargo where nome = " + pessoa.getCargo() + ";";
-				 ResultSet rs = stmt.executeQuery(sql);
-				 String c = rs.getString("cargo");
-				 int cargo = Integer.parseInt(c);
-				sql = "insert into funcionario(cpf_pessoa, senha, cargo, nivel) valeus("+pessoa.getCpf()+",123456"+cargo+","+pessoa.getNivel()+")";
-
-				System.out.println("Funcionario inserido com sucesso!");
-				return true;
+				if (cargo != -1) {
+					String sql = "insert into funcionario(cpf_pessoa, senha, cargo, nivel) valeus("+pessoa.getCpf()+",123456"+cargo+","+pessoa.getNivel()+")";
+					Statement stmt = con.createStatement();
+					stmt.executeUpdate(sql);
+					System.out.println("Funcionario inserido com sucesso!");
+					return true;
+				}
+				else {
+					System.out.println("Falha ao inserir Funcionario!");
+					return false;
+				}
 			}
 			catch (SQLException erro) {
-				System.out.println("Erro ao inserir funcionario");
+				System.out.println("SQL: Erro ao inserir funcionario");
 				return false;
 			}
 			finally{
 				desconectarBD();
 			}
 		}
+
 /*
 		//****************UPDATE FUNCIONARIO****************************************
 		public static boolean update( Funcionario funcionario) throws SQLException {

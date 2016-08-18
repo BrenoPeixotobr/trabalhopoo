@@ -1,4 +1,4 @@
-package backend;
+//package backend;
 import java.util.Scanner;
 
 public class Endereco {
@@ -30,6 +30,9 @@ public class Endereco {
 		this.cidade = ler.nextLine();
 		System.out.print("Estado: ");
 		this.uf = ler.nextLine();
+		System.out.print("CEP: ");
+		cep = ler.nextLine();
+		ler.nextLine();
 	}
 
 	public String getRua() {
@@ -78,7 +81,7 @@ public class Endereco {
 
 	public void Imprime() {
 		//System.out.println("\nRua: "+rua+"\nNumero: "+numero+"\nComplemento: "+complemento+"\nBairro: "+bairro+"\nCidade: "+cidade+"\nEstado: "+uf);
-		System.out.println("\nEndereco: Rua "+rua+", "+numero+" ("+complemento+")"+", "+bairro+" - "+cidade+"/"+uf);
+		System.out.println("\nEndereco: Rua "+rua+", "+numero+" ("+complemento+")"+", "+bairro+" - "+cidade+"/"+uf+"\nCEP: " + cep);
 	}
 
 }

@@ -14,9 +14,9 @@ public class Testa {
           break;
         case 1:
           //insere();
-          Cliente c = new Cliente();
-          c.Imprime();
-          ConexaoBD.insere(c);
+          Funcionario p = new Funcionario();
+          p.Imprime();
+          ConexaoBD.insere(p);
           break;
         case 2:
           //Update();
