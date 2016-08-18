@@ -188,26 +188,17 @@ public class ConexaoBD {
 			}
 		}
 
-		//****************INSERE FUNCIONARIO****************************************
-		public static boolean insere( Funcionario pessoa) {
+		//****************INSERE NA TABELA FUNCIONARIO******************************
+		public static boolean insere ( String cpf, String senha, int codigoCargo, int nivel ) {
 			try {
-				//****************Inserir Pessoa****************************************
-				insere( pessoa.getCpf(), pessoa.getNome(), pessoa.getRg(), pessoa.getEmail() );
-				//****************Inserir Endereco**************************************
-				insere( pessoa.getCpf(), pessoa.getEnde() );
-				//****************Inserir Telefone**************************************
-				insere( pessoa.getCpf(), pessoa.getTel() );
-				//****************Encontrando o cargo do funcionario********************
-				int cargo = CodigoCargo( pessoa.getCargo() );
-				//****************Inserir Funcionario***********************************
-				conectarBD();
-				if (cargo != -1) {
+				if ( codigoCargo != -1 ) {
+					conectarBD();
 					String sql = "insert into funcionario(cpf_pessoa, senha, cargo, nivel) values(?,?,?,?)";
 					PreparedStatement pst = con.prepareStatement(sql);
-					pst.setString( 1, pessoa.getCpf() );
-					pst.setString( 2, pessoa.getSenha() );
-					pst.setString( 3, pessoa.getCargo() );
-					pst.setInt( 3, pessoa.getNivel() );
+					pst.setString( 1, cpf );
+					pst.setString( 2, senha );
+					pst.setInt( 3, codigoCargo );
+					pst.setInt( 4, nivel );
 					pst.executeUpdate();
 					pst.close();
 
@@ -220,12 +211,26 @@ public class ConexaoBD {
 				}
 			}
 			catch (SQLException erro) {
-				System.out.println("SQL: Erro ao inserir funcionario");
+				System.out.println("SQL: Erro ao inserir na tabela funcionario");
 				return false;
 			}
 			finally{
 				desconectarBD();
 			}
+		}
+
+		//****************INSERE FUNCIONARIO****************************************
+		public static void insere( Funcionario pessoa) {
+				//****************Inserir Pessoa****************************************
+				insere( pessoa.getCpf(), pessoa.getNome(), pessoa.getRg(), pessoa.getEmail() );
+				//****************Inserir Endereco**************************************
+				insere( pessoa.getCpf(), pessoa.getEnde() );
+				//****************Inserir Telefone**************************************
+				insere( pessoa.getCpf(), pessoa.getTel() );
+				//****************Encontrando o cargo do funcionario********************
+				int cargo = CodigoCargo( pessoa.getCargo() );
+				//****************Inserir Funcionario***********************************
+				insere (pessoa.getCpf(), pessoa.getSenha(), cargo, pessoa.getNivel() );
 		}
 
 /*
@@ -275,6 +280,7 @@ public class ConexaoBD {
 				//*************Deletar Telefones****************************************
 				String sql = "delete from telefone where cpf = "+ pessoa.getCpf() + ";";
 				stmt.executeUpdate(sql);
+
 				//*************Deletar o Endereço***************************************
 				sql = "delete from endereco where cpf = "+ pessoa.getCpf() + ";";
 				stmt.executeUpdate(sql);
@@ -327,20 +333,5 @@ public class ConexaoBD {
 				desconectarBD();
 			}
 		}
-
-		//****************insere pessoa*********************************************
-	  public static void insere(String nome, int CPF, String rg, String email) {
-		  int linhasAfetadas = 0;
-			try{
-			Statement st = con.createStatement();
-			String sql = "insert into pessoa(cpf, nome, rg, email) values('"+CPF+"','"+nome+"','"+rg+"','"+email+"');";
-			linhasAfetadas = st.executeUpdate(sql);
-
-			}catch(SQLException fonte){
-				System.out.println("Não pode conectar com a fonte : "+fonte);
-			}finally {
-			     desconectarBD();
-			}
-	 }
 
 }
