@@ -32,7 +32,7 @@ public class Endereco {
 		this.uf = ler.nextLine();
 		System.out.print("CEP: ");
 		cep = ler.nextLine();
-		ler.nextLine();
+		//ler.nextLine();
 	}
 
 	public String getRua() {

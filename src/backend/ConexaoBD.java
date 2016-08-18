@@ -40,14 +40,20 @@ public class ConexaoBD {
 		//****************INSERE CLIENTE********************************************
 		public static boolean insere( Cliente pessoa) {
 			try {
+				//****************Inserir Pessoa****************************************
+				insere( pessoa.getCpf(), pessoa.getNome(), pessoa.getRg(), pessoa.getEmail() );
+				//****************Inserir Endereco**************************************
+				insere( pessoa.getCpf(), pessoa.getEnde() );
+				//****************Inserir Telefone**************************************
+				insere( pessoa.getCpf(), pessoa.getTel() );
+
 				conectarBD();
-				String sql = "insert into cliente(cpf, nome, rg, email, genero) values(?,?,?,?,?);";
+				String sql = "insert into cliente(cpf_pessoa, genero) values(?,?);";
 				PreparedStatement pst = con.prepareStatement(sql);
-				pst.setString(1, pessoa.getCpf());
-				pst.setString(2, pessoa.getNome());
-				pst.setString(3, pessoa.getRg());
-				pst.setString(4, pessoa.getEmail());
-				pst.setString(5, pessoa.getEmail());
+				pst.setString( 1, pessoa.getCpf() );
+				pst.setString( 2, pessoa.getGenero() );
+				pst.executeUpdate();
+				pst.close();
 				System.out.println("cliente " + pessoa.getNome() + " inserido com sucesso");
 				return true;
 			}
@@ -71,7 +77,8 @@ public class ConexaoBD {
 				pst.setString(3, rg);
 				pst.setString(4, email);
 				pst.executeUpdate();
-				System.out.println("\n\nBreakPoint!\n\n\n");
+				//System.out.println("\n\nBreakPoint!\n\n\n");
+				pst.close();
 				//System.out.println("Pessoa inserida");
 				return true;
 			}
@@ -101,6 +108,7 @@ public class ConexaoBD {
 				pst.setString( 8, endereco.getCep() );
 				pst.executeUpdate();
 
+				pst.close();
 				return true;
 			}
 			catch (SQLException erro) {
@@ -124,6 +132,7 @@ public class ConexaoBD {
 				pst.setBoolean( 3, telefone.isZap() );
 				pst.executeUpdate();
 
+				pst.close();
 				//System.out.println("Telefone " + telefone.getNumero() + " inserido com sucesso!");
 				return true;
 			}
@@ -157,6 +166,7 @@ public class ConexaoBD {
 				//ResultSet rs = pst.executeQuery();
 				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
+				//stmt.close();
 
 				while ( rs.next() ) {
 					if (nomeCargo == rs.getString("nome") ){
@@ -166,6 +176,7 @@ public class ConexaoBD {
 						return codigoCargo;
 					}
 				}
+				System.out.println("Cargo nao encontrado! ");
 				return (-1);
 			}
 			catch (SQLException erro) {
@@ -191,9 +202,15 @@ public class ConexaoBD {
 				//****************Inserir Funcionario***********************************
 				conectarBD();
 				if (cargo != -1) {
-					String sql = "insert into funcionario(cpf_pessoa, senha, cargo, nivel) valeus("+pessoa.getCpf()+",123456"+cargo+","+pessoa.getNivel()+")";
-					Statement stmt = con.createStatement();
-					stmt.executeUpdate(sql);
+					String sql = "insert into funcionario(cpf_pessoa, senha, cargo, nivel) values(?,?,?,?)";
+					PreparedStatement pst = con.prepareStatement(sql);
+					pst.setString( 1, pessoa.getCpf() );
+					pst.setString( 2, pessoa.getSenha() );
+					pst.setString( 3, pessoa.getCargo() );
+					pst.setInt( 3, pessoa.getNivel() );
+					pst.executeUpdate();
+					pst.close();
+
 					System.out.println("Funcionario inserido com sucesso!");
 					return true;
 				}
